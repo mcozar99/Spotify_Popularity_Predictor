@@ -509,7 +509,7 @@ class DataGatherer:
             'artist_playmeid': self.get_artist_playmeid(),
             'artist_terms': self.get_artist_terms(),
             'artist_terms_freq': self.get_artist_terms_freq(),
-            'artist_ter,s_weight': self.get_artist_terms_weight(),
+            'artist_terms_weight': self.get_artist_terms_weight(),
             'audio_md5': self.get_audio_md5(),
             'bars_confidence': self.get_bars_confidence(),
             'bars_start': self.get_bars_start(),
