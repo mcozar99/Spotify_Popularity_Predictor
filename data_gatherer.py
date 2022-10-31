@@ -5,7 +5,6 @@ We will use it to gather a pandas dataframe with the data of all songs stored in
 Source: http://millionsongdataset.com/pages/example-track-description/
 """
 import tables
-import pandas as pd
 
 
 class DataGatherer:
@@ -545,7 +544,7 @@ class DataGatherer:
             'tempo': self.get_tempo(),
             'time_signature': self.get_time_signature(),
             'time_signature_confidence': self.get_time_signature_confidence(),
-            'title_title': self.get_title(),
+            'title': self.get_title(),
             'track_7digitalid': self.get_track_7digitalid(),
             'track_id': self.get_track_id(),
             'year': self.get_year()

@@ -1,0 +1,6 @@
+data/MillionSongSubset
+data/millionsongsubset.tar
+data/millionsongsubset.tar.gz
+.idea
+venv
+!**/__pycache__
