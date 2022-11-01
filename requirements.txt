@@ -1,2 +1,6 @@
 pandas
 tables
+langdetect
+deep_translator
+sentence_transformers
+lyricsgenius

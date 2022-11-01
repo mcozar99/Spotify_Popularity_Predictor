@@ -4,3 +4,4 @@ data/millionsongsubset.tar.gz
 .idea
 venv
 !**/__pycache__
+keys.py
