@@ -1,5 +1,5 @@
 """
-Gathers lyrics from genius.com API
+Gathers lyrics from https://genius.com API
 1- Translate -> Google Translator
 2- Vectorize -> https://huggingface.co/sentence-transformers/all-mpnet-base-v2
 """

@@ -5,7 +5,7 @@ We will use it to gather a pandas dataframe with the data of all songs stored in
 Source: http://millionsongdataset.com/pages/example-track-description/
 """
 import tables
-
+import numpy as np
 
 class DataGatherer:
 
@@ -492,6 +492,9 @@ class DataGatherer:
 
 
     def parse_data(self):
+        if self.h5.isopen == 0:
+            self.read_file()
+
         data = {
             'analysis_sample_rate': self.get_analysis_sample_rate(),
             'artist_7digitalid': self.get_artist_7digitalid(),
@@ -550,4 +553,27 @@ class DataGatherer:
             'year': self.get_year()
         }
         self.close_file()
+
+        # Convert bytes to strings
+        for item in data:
+            if type(data[item]) == np.bytes_:
+                data[item] = data[item].decode('utf-8')
+            elif type(data[item]) == np.ndarray:
+                try:
+                    if type(data[item][0]) == np.bytes_:
+                        new_val = []
+                        for i in range(len(data[item])):
+                            new_val.append(data[item][i].decode('utf-8'))
+                        data[item] = new_val
+                except:
+                    continue
         return data
+
+"""
+Retrieve data among the subset
+for a in os.listdir('data/MillionSongSubset'):
+    for b in os.listdir('data/MillionSongSubset/%s/'%a):
+        for c in os.listdir('data/MillionSongSubset/%s/%s'%(a, b)):
+            for d in os.listdir('data/MillionSongSubset/%s/%s/%s'%(a, b, c)):
+                dg = DataGatherer('data/MillionSongSubset/%s/%s/%s/%s'%(a, b, c, d)).parse_data()
+"""
