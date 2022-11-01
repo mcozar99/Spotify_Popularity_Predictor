@@ -73,5 +73,3 @@ class LyricsGatherer:
             return self.encode(text)
         else:
             return None
-
-
