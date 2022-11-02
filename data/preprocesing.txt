@@ -1,0 +1,36 @@
+GENERAL DATA
+    One hot encoding:
+        artist_mbtags ()
+        artist_terms (pero ponemos el weight de cada uno)
+        key*key_confidence
+        mode*mode_confidence
+
+
+    len(bars_start*media de bar_confidence )/duracion
+    len(beats_start*media de beat_confidence )/duracion
+    count(sections) y nos fiamos de que están bien pilladas
+    start_of_fade_out/duracion
+    start_of_fade_in/duracion
+
+    //descartamos de momento pero sería relevante incluirla
+    releaseBigTunes
+    similar artist
+    artist_location
+
+
+
+MUSICAL FEATURES (modelo de meter todos los modelos a pelo)
+    segments
+    tatum_start
+    sections????
+    mirar como podemos hacer para meter los datos
+
+LYRICS  
+
+para hacer seleccion de features las normalizamos y luego multiplicamos pro el peso que queramos
+
+
+
+TIPS
+ir recorriendo los directorios hasta el ultimo nivel y preprocesar cada cancion e incluirla en el df
+crear un csv para las musical features y otro para general data
