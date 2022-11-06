@@ -1,11 +1,16 @@
 from general_data_gatherer import DataGatherer
 import pandas as pd
 import os
-
+from sklearn.decomposition import PCA  # to apply PCA
+from numpy import array
+from numpy import argmax
+from sklearn.preprocessing import LabelEncoder
+from sklearn.preprocessing import OneHotEncoder
+import json
 
 x = DataGatherer("data/MillionSongSubset/A/A/A/TRAAAAW128F429D538.h5")
 y = DataGatherer("data/MillionSongSubset/A/R/G/TRARGBM128F428F65E.h5")
-z = DataGatherer("data/MillionSongSubset/B/C/A/TRBCALG128F1483839.h5")
+z = DataGatherer("data/MillionSongSubset/A/L/A/TRALAKV12903CBD7F6.h5")
 t = DataGatherer("data/MillionSongSubset/B/H/H/TRBHHCU128F148AF19.h5")
 s = DataGatherer("data/MillionSongSubset/B/D/D/TRBDDCT12903CEF57E.h5")
 
@@ -18,28 +23,44 @@ def get_data(song_path):
 
     data = {
         "hotttness":[song.get_song_hotttnesss()],
-        "key":[song.get_key()*song.get_key_confidence()], 
-        "mode":[song.get_mode()*song.get_mode_confidence()],   # could be removed
+        "key":[song.get_key()*song.get_key_confidence()], # the note or chord the music is centered around, the tonic
+        "mode":[song.get_mode()*song.get_mode_confidence()],   # type of scale with distinct melodic characteristics.
         "fade_out": [song.get_start_of_fade_out()/song.get_duration()], # it is rare that some fade outs start later than the end
         "fade_in": [song.get_end_of_fade_in()/song.get_duration()], 
-        "danceability": [song.get_danceability()],
         "duration":[song.get_duration()],
-        "energy":[song.get_energy()], # all values 0 consider to quit
-        "key": [song.get_key()*song.get_key_confidence()], # no sale no se por qué
-        "loudness":[song.get_loudness()],
-        "mode":[song.get_mode()*song.get_mode_confidence()], # tampoco sale
         "tempo":[song.get_tempo()], # este no lo ponemos mejor en music features
         "time_signature":[song.get_time_signature()*song.get_time_signature_confidence()],
-        "year":[song.get_year()],
-        "artist_hotttness":[song.get_artist_hotttnesss()],
         "analysis_sample_rate":[song.get_analysis_sample_rate()]
-        
     }
+
     df = pd.DataFrame(data)
     song.close_file()
     return df
-# for i in test:
-#     songs.append(get_data(i))
+
+# a = get_data("data/MillionSongSubset/A/B/A/TRABACN128F425B784.h5")
+# print(a)
+
+# for item in test:
+#     print(len(item.get_segments_()))
+
+# segments
+# tatum_start
+# sections
+
+
+#problems
+# a bar is one small segment of music that holds a number of beats.
+# bar               no lo pondría en general data
+
+# beat, in music, the basic rhythmic unit of a measure, or bar,
+# beats             no lo pondría en general data
+
+# In music, a section is a complete, but not independent, musical idea. 
+# Types of sections include the introduction or intro, exposition, 
+# development, recapitulation, verse, chorus or refrain, conclusion, 
+# coda or outro, fadeout, bridge or interlude.
+# get sections      no lo pondría en general data
+
 
 
 # artists_familiarity
@@ -64,15 +85,7 @@ def get_data(song_path):
 # similar_artists
 
 
-#problems
-# artist mbtags 
-# terms 
-# bar
-# beats
-# get sections
-# title
-# artist terms
-# sections
+
 
 """
 This class process all the songs included in the millionsong
@@ -90,23 +103,30 @@ class Process():
 
             data = {
                 "hotttness":[song.get_song_hotttnesss()],
-                "key":[song.get_key()*song.get_key_confidence()], 
-                "mode":[song.get_mode()*song.get_mode_confidence()],   # could be removed
                 "fade_out": [song.get_start_of_fade_out()/song.get_duration()], # it is rare that some fade outs start later than the end
                 "fade_in": [song.get_end_of_fade_in()/song.get_duration()], 
                 "danceability": [song.get_danceability()],
                 "duration":[song.get_duration()],
                 "energy":[song.get_energy()], # all values 0 consider to quit
-                "key": [song.get_key()*song.get_key_confidence()], # no sale no se por qué
                 "loudness":[song.get_loudness()],
-                "mode":[song.get_mode()*song.get_mode_confidence()], # tampoco sale
-                "tempo":[song.get_tempo()], # este no lo ponemos mejor en music features
-                "time_signature":[song.get_time_signature()*song.get_time_signature_confidence()],
                 "year":[song.get_year()],
                 "artist_hotttness":[song.get_artist_hotttnesss()],
-                "analysis_sample_rate":[song.get_analysis_sample_rate()]
-                
             }
+
+            artist_terms = json.load(open("data/artist_terms.json"))
+            for i in range(len(x.get_artist_terms())):
+                term = x.get_artist_terms()[i]
+                term_freq = x.get_artist_terms_freq()[i]
+                term_weight =x.get_artist_terms_weight()[i]
+                artist_terms["artist_term: "+str(term)[2:len(str(term))-1]] = term_freq*term_weight
+            data.update(artist_terms)
+
+            artist_mbtags = json.load(open("data/artist_mbtags.json"))
+            for i in range(len(y.get_artist_mbtags())):
+                mbtag = y.get_artist_mbtags()[i]
+                artist_mbtags["artist_mbtags: "+str(mbtag)[2:len(str(mbtag))-1]] = 1
+            data.update(artist_mbtags)
+
             df = pd.DataFrame(data)
             song.close_file()
             return df
