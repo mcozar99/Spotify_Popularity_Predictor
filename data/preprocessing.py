@@ -1,8 +1,6 @@
 from general_data_gatherer import DataGatherer
 import pandas as pd
 import os
-from sklearn.preprocessing import LabelEncoder
-from sklearn.preprocessing import OneHotEncoder
 import json
 import numpy as np
 
@@ -35,7 +33,7 @@ class Preprocess():
                 "artist_hotttness":[song.get_artist_hotttnesss()],
             }
 
-            artist_terms = json.load(open("data/artist_terms.json"))
+            artist_terms = json.load(open("dartist_terms.json"))
             for i in range(len(song.get_artist_terms())):
                 term = song.get_artist_terms()[i]
                 term_freq = song.get_artist_terms_freq()[i]
@@ -43,7 +41,7 @@ class Preprocess():
                 artist_terms["artist_term: "+str(term)[2:len(str(term))-1]] = term_freq*term_weight
             data.update(artist_terms)
 
-            artist_mbtags = json.load(open("data/artist_mbtags.json"))
+            artist_mbtags = json.load(open("artist_mbtags.json"))
             for i in range(len(song.get_artist_mbtags())):
                 mbtag = song.get_artist_mbtags()[i]
                 artist_mbtags["artist_mbtags: "+str(mbtag)[2:len(str(mbtag))-1]] = 1
@@ -55,13 +53,13 @@ class Preprocess():
 
         df = pd.DataFrame
         songs = []
-        for a in os.listdir('data/MillionSongSubset'):
-            for b in os.listdir('data/MillionSongSubset/%s/'%a):
-                for c in os.listdir('data/MillionSongSubset/%s/%s'%(a, b)):
-                    for d in os.listdir('data/MillionSongSubset/%s/%s/%s'%(a, b, c)):
-                        songs.append(get_data(f'data/MillionSongSubset/{a}/{b}/{c}/{d}'))
+        for a in os.listdir('MillionSongSubset'):
+            for b in os.listdir('MillionSongSubset/%s/'%a):
+                for c in os.listdir('MillionSongSubset/%s/%s'%(a, b)):
+                    for d in os.listdir('MillionSongSubset/%s/%s/%s'%(a, b, c)):
+                        songs.append(get_data(f'MillionSongSubset/{a}/{b}/{c}/{d}'))
         df = pd.concat(songs)
-        df.to_csv("data/general_data.csv",index=0)
+        df.to_csv("general_data.csv",index=0)
         return print("preprocessed general_data.csv file")
 
     def preprocess_musical_data():
@@ -159,15 +157,15 @@ class Preprocess():
 
         df = pd.DataFrame
         songs = []
-        for a in os.listdir('data/MillionSongSubset'):
-            for b in os.listdir('data/MillionSongSubset/%s/'%a):
-                for c in os.listdir('data/MillionSongSubset/%s/%s'%(a, b)):
-                    for d in os.listdir('data/MillionSongSubset/%s/%s/%s'%(a, b, c)):
-                        songs.append(get_data(f'data/MillionSongSubset/{a}/{b}/{c}/{d}'))
+        for a in os.listdir('MillionSongSubset'):
+            for b in os.listdir('MillionSongSubset/%s/'%a):
+                for c in os.listdir('MillionSongSubset/%s/%s'%(a, b)):
+                    for d in os.listdir('MillionSongSubset/%s/%s/%s'%(a, b, c)):
+                        songs.append(get_data(f'MillionSongSubset/{a}/{b}/{c}/{d}'))
 
 
         df = pd.concat(songs)
-        df.to_csv("data/musical_data.csv",index=0)
+        df.to_csv("musical_data.csv",index=0)
         return print("preprocessed musical_data.csv file")
 
 if __name__ == "__main__":
