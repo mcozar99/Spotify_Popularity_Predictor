@@ -33,7 +33,7 @@ class Preprocess():
                 "artist_hotttness":[song.get_artist_hotttnesss()],
             }
 
-            artist_terms = json.load(open("dartist_terms.json"))
+            artist_terms = json.load(open("artist_terms.json"))
             for i in range(len(song.get_artist_terms())):
                 term = song.get_artist_terms()[i]
                 term_freq = song.get_artist_terms_freq()[i]
