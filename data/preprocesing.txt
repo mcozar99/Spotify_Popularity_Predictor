@@ -23,7 +23,28 @@ MUSICAL FEATURES (modelo de meter todos los modelos a pelo)
     segments
     tatum_start
     sections????
-    mirar como podemos hacer para meter los datos
+# segments_timbre * segments_confidence     400
+# segments start * confidence
+# segments_loudness (max_time - time)*loudness*confidence
+# tatum_start * tatum confidence            500
+# sections_start * confidence               10
+# bars_start * confidence                   100
+# beats_start * confidence                  300
+
+
+#problems
+# a bar is one small segment of music that holds a number of beats.
+# bar               no lo pondría en general data
+
+# beat, in music, the basic rhythmic unit of a measure, or bar,
+# beats             no lo pondría en general data
+
+# In music, a section is a complete, but not independent, musical idea. 
+# Types of sections include the introduction or intro, exposition, 
+# development, recapitulation, verse, chorus or refrain, conclusion, 
+# coda or outro, fadeout, bridge or interlude.
+# get sections      no lo pondría en general data
+
 
 LYRICS  
 
