@@ -1,6 +1,9 @@
 data/MillionSongSubset
 data/millionsongsubset.tar
 data/millionsongsubset.tar.gz
+data/data.csv
+data/general_data.csv
+data/musical_data.csv
 .idea
 venv
 !**/__pycache__

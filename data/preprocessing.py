@@ -58,11 +58,13 @@ class Preprocess():
                 for c in os.listdir('MillionSongSubset/%s/%s'%(a, b)):
                     for d in os.listdir('MillionSongSubset/%s/%s/%s'%(a, b, c)):
                         songs.append(get_data(f'MillionSongSubset/{a}/{b}/{c}/{d}'))
+
+
         df = pd.concat(songs)
         df.to_csv("general_data.csv",index=0)
         return print("preprocessed general_data.csv file")
 
-    def preprocess_musical_data():
+    def preprocess_musical_data(file):
         """
         Returns the song features related to musical data prepared to include them in the dataset
         """
@@ -162,6 +164,7 @@ class Preprocess():
                 for c in os.listdir('MillionSongSubset/%s/%s'%(a, b)):
                     for d in os.listdir('MillionSongSubset/%s/%s/%s'%(a, b, c)):
                         songs.append(get_data(f'MillionSongSubset/{a}/{b}/{c}/{d}'))
+
 
 
         df = pd.concat(songs)
