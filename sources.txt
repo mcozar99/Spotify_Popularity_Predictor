@@ -1,0 +1,19 @@
+[1] Joshua S. Gulmatico et al. “SpotiPred: A Machine Learning Approach Prediction of
+Spotify Music Popularity by Audio Features”. In: ICPC2T 2022 - 2nd International
+Conference on Power, Control and Computing Technologies, Proceedings (2022).
+doi: 10.1109/ICPC2T53885.2022.9776765.
+[2] David Martin-Gutierrez et al. “A Multimodal End-to-End Deep Learning Architecture for Music Popularity Prediction”. In: IEEE Access 8 (2020), pp. 39361–39374.
+issn: 21693536. doi: 10.1109/ACCESS.2020.2976033. url: https://ieeexplore.
+ieee.org/document/9007339.
+[3] Million Song Dataset. url: http://millionsongdataset.com/.
+[4] Musixmatch. url: https://www.musixmatch.com/.
+[5] Genius. url: https://genius.com/.
+[6] langdetect. url: https://pypi.org/project/langdetect/.
+[7] all-mpnet-base-v2 · Hugging Face. url: https : / / huggingface . co / sentence -
+transformers/all-mpnet-base-v2.
+[8] Vidit Gupta, S. Jeevaraj and Somesh Kumar. “Songs Recommendation using ContextBased Semantic Similarity between Lyrics”. In: 2021 IEEE India Council International Subsections Conference, INDISCON 2021 (2021). doi: 10.1109/INDISCON53343.
+2021.9582158.
+[9] Abhishek Singhi and Daniel G Brown. “Can song lyrics predict hits?” In: Proceedings of the 11th International Symposium on Computer Music Multidisciplinary
+Research. 2015, pp. 457–471.
+[10] MusicBrainz - The Open Music Encyclopedia. url: https://musicbrainz.org/.
+[11] The Echo Nest Blog. url: https://blog.echonest.com/.
