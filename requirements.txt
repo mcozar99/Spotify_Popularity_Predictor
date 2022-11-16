@@ -1,4 +1,5 @@
 pandas
+numpy
 tables
 langdetect
 deep_translator
